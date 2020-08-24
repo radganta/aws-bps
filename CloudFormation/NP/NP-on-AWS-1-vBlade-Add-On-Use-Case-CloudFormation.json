@@ -130,13 +130,13 @@
 		}
 	},
 	"Resources": {
-		"KeyPlacementGroup": {
+		"PlacementGroup": {
 			"Type" : "AWS::EC2::PlacementGroup",
 			"Properties" : {
 				"Strategy" : { "Fn::FindInMap" : [ "VariableMap", "global", "PLACEMENTxGROUPxSTRATEGY"] }
 			}
 		},
-		"KeyBpsVirtualBlade1Eth0": {
+		"BpsVirtualBlade1Eth0": {
 			"Type": "AWS::EC2::NetworkInterface",
 			"Properties": {
 				"Description": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }, 
@@ -176,7 +176,7 @@
 				]
 			}
 		},
-		"KeyBpsVirtualBlade1Eth1": {
+		"BpsVirtualBlade1Eth1": {
 			"Type": "AWS::EC2::NetworkInterface",
 			"Properties": {
 				"Description": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }, 
@@ -254,7 +254,7 @@
 				]
 			}
 		},
-		"KeyBpsVirtualBlade1Eth2": {
+		"BpsVirtualBlade1Eth2": {
 			"Type": "AWS::EC2::NetworkInterface",
 			"Properties": {
 				"Description": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }, 
@@ -332,7 +332,7 @@
 				]
 			}
 		},
-		"KeyBpsVirtualBlade1": {
+		"BpsVirtualBlade1": {
 			"Type": "AWS::EC2::Instance",
 			"Properties": {
 				"DisableApiTermination": { "Fn::FindInMap" : [ "VariableMap", "global", "INSTANCExDISABLExAPIxTERMINATION"] },
@@ -340,7 +340,7 @@
 				"ImageId": { "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "AMIxVBLADE"] },
 				"InstanceType": { "Ref" : "BPSvBladeInstanceType" },
 				"Monitoring": { "Fn::FindInMap" : [ "VariableMap", "global", "INSTANCExMONITORING"] },
-				"PlacementGroupName" : { "Ref" : "KeyPlacementGroup" },
+				"PlacementGroupName" : { "Ref" : "PlacementGroup" },
 				"Tags": [
 					{
 						"Key": "Name",
@@ -366,19 +366,19 @@
 				"NetworkInterfaces": [
 					{
 						"NetworkInterfaceId": {
-							"Ref": "KeyBpsVirtualBlade1Eth0"
+							"Ref": "BpsVirtualBlade1Eth0"
 						},
 						"DeviceIndex": "0"
 					},
 					{
 						"NetworkInterfaceId": {
-							"Ref": "KeyBpsVirtualBlade1Eth1"
+							"Ref": "BpsVirtualBlade1Eth1"
 						},
 						"DeviceIndex": "1"
 					},
 					{
 						"NetworkInterfaceId": {
-							"Ref": "KeyBpsVirtualBlade1Eth2"
+							"Ref": "BpsVirtualBlade1Eth2"
 						},
 						"DeviceIndex": "2"
 					}
@@ -394,26 +394,26 @@
 				]   
 			}
 		},
-		"KeyBpsVirtualBlade1Eth0ElasticIp": {
+		"BpsVirtualBlade1Eth0ElasticIp": {
 			"Type": "AWS::EC2::EIP",
 			"DependsOn": [
-				"KeyBpsVirtualBlade1"
+				"BpsVirtualBlade1"
 			],
 			"Properties": {
 				"Domain": "vpc"
 			}
 		},
-		"KeyBpsVirtualBlade1Eth0ElasticIpAssociation": {
+		"BpsVirtualBlade1Eth0ElasticIpAssociation": {
 			"Type": "AWS::EC2::EIPAssociation",
 			"Properties": {
 				"AllocationId": {
 					"Fn::GetAtt": [
-						"KeyBpsVirtualBlade1Eth0ElasticIp",
+						"BpsVirtualBlade1Eth0ElasticIp",
 						"AllocationId"
 					]
 				},
 				"NetworkInterfaceId": {
-					"Ref": "KeyBpsVirtualBlade1Eth0"
+					"Ref": "BpsVirtualBlade1Eth0"
 				}
 			}
 		}
@@ -586,11 +586,11 @@
       }
     },
 	"Outputs": {
-		"KeyBpsVirtualBlade1": {
+		"BpsVirtualBlade1": {
 			"Description": "KEY_BPS_VIRTUAL_BLADE1_PRIVATE_IP",
 			"Value": {
 				"Fn::GetAtt": [
-					"KeyBpsVirtualBlade1",
+					"BpsVirtualBlade1",
 					"PrivateIp"
 				]
 			}
