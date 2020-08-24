@@ -135,7 +135,7 @@
 				"INSTANCExEBSxDELETExONxTERMINATION" : true,
 				"INSTANCExEBSxVOLUMExTYPE" : "gp2",
 				"APPxTAG" : "BPS",
-				"APPxVERSION" : "9.00.108.379376.29"
+				"APPxVERSION" : "9.10"
 			},
 			"local" : {
 				"VBLADE1xETH0xPRIVATExIPxADDRESS" : "10.0.1.11",

@@ -154,7 +154,7 @@
 				"INSTANCExEBSxDELETExONxTERMINATION" : true,
 				"INSTANCExEBSxVOLUMExTYPE" : "gp2",
 				"APPxTAG" : "BPS",
-				"APPxVERSION" : "9.00.108.379376.29"
+				"APPxVERSION" : "9.10"
 			},
 			"local" : {
 				"SYSCTRLxCTRL0xPRIVATExIPxADDRESS" : "10.0.1.10",
