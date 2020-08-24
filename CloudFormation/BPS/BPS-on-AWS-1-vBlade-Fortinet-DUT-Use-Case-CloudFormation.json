@@ -1138,7 +1138,7 @@
 			]
 		},
          
-		"KeyDutEth0": {
+		"DutEth0": {
 			"Type": "AWS::EC2::NetworkInterface",
 			"Properties": {
 				"Description": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }, 
@@ -1175,7 +1175,7 @@
 				]
 			}
 		},        
-		"KeyDutEth1": {
+		"DutEth1": {
 			"Type": "AWS::EC2::NetworkInterface",
 			"Properties": {
 				"Description": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }, 
@@ -1213,7 +1213,7 @@
 				]
 			}
 		},
-		"KeyDutEth2": {
+		"DutEth2": {
 			"Type": "AWS::EC2::NetworkInterface",
 			"Properties": {
 				"Description": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }, 
@@ -1252,7 +1252,7 @@
 				]
 			}
 		},
-		"KeyDut": {
+		"Dut": {
 			"Type": "AWS::EC2::Instance",
 			"Properties": {
 				"DisableApiTermination": { "Fn::FindInMap" : [ "VariableMap", "global", "INSTANCExDISABLExAPIxTERMINATION"] },
@@ -1286,19 +1286,19 @@
 				"NetworkInterfaces": [
 					{
 						"NetworkInterfaceId": {
-							"Ref": "KeyDutEth0"
+							"Ref": "DutEth0"
 						},
 						"DeviceIndex": "0"
 					},
 					{
 						"NetworkInterfaceId": {
-							"Ref": "KeyDutEth1"
+							"Ref": "DutEth1"
 						},
 						"DeviceIndex": "1"
 					},
 					{
 						"NetworkInterfaceId": {
-							"Ref": "KeyDutEth2"
+							"Ref": "DutEth2"
 						},
 						"DeviceIndex": "2"
 					}
@@ -1386,7 +1386,7 @@
 				}
 			}
 		},
-		"KeyDutElasticIp": {
+		"DutElasticIp": {
 			"Type": "AWS::EC2::EIP",
 			"DependsOn": [
 				"GwAttach"
@@ -1395,17 +1395,17 @@
 				"Domain": "vpc"
 			}
 		},
-		"KeyDutElasticIpAssociation": {
+		"DutElasticIpAssociation": {
 			"Type": "AWS::EC2::EIPAssociation",
 			"Properties": {
 				"AllocationId": {
 					"Fn::GetAtt": [
-						"KeyDutElasticIp",
+						"DutElasticIp",
 						"AllocationId"
 					]
 				},
 				"NetworkInterfaceId": {
-					"Ref": "KeyDutEth0"
+					"Ref": "DutEth0"
 				}
 			}
 		},
@@ -1576,11 +1576,11 @@
 				]
 			}
 		},
-		"KeyDut": {
+		"Dut": {
 			"Description": "KEY_DUT_PRIVATE_IP",
 			"Value": {
 				"Fn::GetAtt": [
-					"KeyDut",
+					"Dut",
 					"PrivateIp"
 				]
 			}
