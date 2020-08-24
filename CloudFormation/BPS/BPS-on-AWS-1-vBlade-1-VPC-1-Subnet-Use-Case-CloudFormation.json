@@ -298,35 +298,6 @@
 				]
 			}
 		},
-  		"KeyTest2Subnet": {
-			"Type": "AWS::EC2::Subnet",
-			"Properties": {
-				"AvailabilityZone": { "Fn::Select" : [ { "Fn::FindInMap" : [ "VariableMap", "global", "SUBNETxAVAILABILITYxZONExINDEX"] }, { "Fn::GetAZs" : { "Ref" : "AWS::Region" } } ] },
-				"CidrBlock": { "Fn::FindInMap" : [ "VariableMap", "global", "TEST2xSUBNETxCIDRxBLOCK"] },
-				"VpcId": {
-					"Ref": "KeyVpc"
-				},
-				"Tags": [
-					{
-						"Key": "Name",
-						"Value": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }, "TEST2_SUBNET", 
-							{ "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "REGIONxTAG"]} ] ] }
-					},
-					{
-						"Key": "Owner",
-						"Value": { "Ref" : "UserEmailTag" }
-					},
-					{
-						"Key": "Options",
-						"Value": { "Fn::FindInMap" : [ "VariableMap", "global", "OPTIONSxTAG"] }
-					},
-					{
-						"Key": "Project",
-						"Value": { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }
-					}
-				]
-			}
-		},
 		"KeyMgmtSecurityGroup": {
 			"Type": "AWS::EC2::SecurityGroup",
 			"Properties": {
@@ -690,17 +661,6 @@
 				},
 				"SubnetId": {
 					"Ref": "KeyTest1Subnet"
-				}
-			}
-		},
-		"KeyTest2SubnetRouteTableAssociation": {
-			"Type": "AWS::EC2::SubnetRouteTableAssociation",
-			"Properties": {
-				"RouteTableId": {
-					"Ref": "KeyTest1RouteTable"
-				},
-				"SubnetId": {
-					"Ref": "KeyTest2Subnet"
 				}
 			}
 		},
