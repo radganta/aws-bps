@@ -31,12 +31,20 @@ variable "BPSSCInstanceType" {
 	type = string
 	default = "t2.medium"
 	description = "Instance type of BPS System Controller VM"
+	validation {
+		condition = can(regex("t2.2xlarge", var.BPSSCInstanceType)) || can(regex("t2.medium", var.BPSSCInstanceType))
+		error_message = "BPSSCInstanceType must be one of (t2.2xlarge | t2.medium) types."
+	}
 }
 
 variable "BPSvBladeInstanceType" {
 	type = string
 	default = "c5n.xlarge"
 	description = "Instance type of BPS Virtual Blade VM"
+	validation {
+		condition =  can(regex("i3.8xlarge", var.BPSvBladeInstanceType)) || can(regex("c5n.xlarge", var.BPSvBladeInstanceType)) || can(regex("c5.xlarge", var.BPSvBladeInstanceType))
+		error_message = "BPSvBladeInstanceType must be one of (c5n.xlarge | c5.xlarge) types."
+	}
 }
 
 variable "InboundIPv4CidrBlock" {

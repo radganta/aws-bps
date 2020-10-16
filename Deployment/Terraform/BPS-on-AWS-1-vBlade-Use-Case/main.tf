@@ -3,53 +3,52 @@ provider "aws" {
 }
 
 locals {
+	uuid = substr(uuid(), 1, 6)
 	Region = var.Region
 	UserEmailTag = var.UserEmailTag
 	UserLoginTag = var.UserLoginTag
 	BPSSCInstanceType = var.BPSSCInstanceType
-	BPSSCInstanceType_AllowedValues = [ "t2.2xlarge", "t2.medium" ]
 	BPSvBladeInstanceType = var.BPSvBladeInstanceType
-	BPSvBladeInstanceType_AllowedValues = [ "i3.8xlarge", "c5n.xlarge", "c5.xlarge" ]
 	InboundIPv4CidrBlock = var.InboundIPv4CidrBlock
 	AMIxSYSCTRL = {
-		us-east-1 = "ami-0e12f9a68f664c6c1"
-		us-east-2 = "ami-073369111d8fb9dc0"
-		us-west-1 = "ami-0dccba3b4dcefa200"
-		us-west-2 = "ami-0bb1558d416a08a08"
+		us-east-1 = "ami-0c444913aa26fad92"
+		us-east-2 = "ami-02d4bd90b76e2ae8b"
+		us-west-1 = "ami-0d5b711a1f51fac7e"
+		us-west-2 = "ami-0a9eba037c6bab3fe"
 		ap-east-1 = "ami-00000000000000000"
-		ap-south-1 = "ami-014b8936783c7726f"
-		ap-northeast-2 = "ami-02b7e98b4be894266"
-		ap-southeast-1 = "ami-0861e447457fdf79b"
-		ap-southeast-2 = "ami-0d4d9352b20897ec9"
-		ap-northeast-1 = "ami-0c488bf0f0e9ca08b"
-		ca-central-1 = "ami-0804385fd28dd567c"
-		eu-central-1 = "ami-087a03475d5992f35"
-		eu-west-1 = "ami-0d3636ca9193ed98f"
-		eu-west-2 = "ami-02a866297c64905e4"
-		eu-west-3 = "ami-0c33525c66c2f05c8"
-		eu-north-1 = "ami-09ce93a13410121f6"
+		ap-south-1 = "ami-051e7bd2b8bd8f56b"
+		ap-northeast-2 = "ami-0c404a48afb76d958"
+		ap-southeast-1 = "ami-03d68c2f4b89c9696"
+		ap-southeast-2 = "ami-0c4218bca0a6252fe"
+		ap-northeast-1 = "ami-07907e4ed13145ff5"
+		ca-central-1 = "ami-09143fafd88ef96ed"
+		eu-central-1 = "ami-0b308d4bfc0705d32"
+		eu-west-1 = "ami-096ae6b7cccaedbd4"
+		eu-west-2 = "ami-0c9254f903ccf4daf"
+		eu-west-3 = "ami-060594425117d741d"
+		eu-north-1 = "ami-0973931af47f1a3e4"
 		me-south-1 = "ami-00000000000000000"
-		sa-east-1 = "ami-076fccb3547017dd0"
+		sa-east-1 = "ami-040e733825e515ce5"
 	}
 	AMIxVBLADE = {
-		us-east-1 = "ami-0443e7dbb462da957"
-		us-east-2 = "ami-09b82820307c82c85"
-		us-west-1 = "ami-0058694e1cb5ab8db"
-		us-west-2 = "ami-093dbb1fca371427c"
+		us-east-1 = "ami-0675ea5050da53fdc"
+		us-east-2 = "ami-08ae93e292e892165"
+		us-west-1 = "ami-0f717f756947024fb"
+		us-west-2 = "ami-0185e9bf1c5a4305b"
 		ap-east-1 = "ami-00000000000000000"
-		ap-south-1 = "ami-08676c2ec93552f25"
-		ap-northeast-2 = "ami-0ee6edfa2625cf0b9"
-		ap-southeast-1 = "ami-0c54c66c219a2f868"
-		ap-southeast-2 = "ami-0d06b7e6a1b26542c"
-		ap-northeast-1 = "ami-00cab5e23adbc211e"
-		ca-central-1 = "ami-0ae8e15f2acac92d9"
-		eu-central-1 = "ami-0552836b16ece38ab"
-		eu-west-1 = "ami-085bca8e499e57867"
-		eu-west-2 = "ami-03d88bb6e7c5d5f70"
-		eu-west-3 = "ami-020bbea1666e6a29f"
-		eu-north-1 = "ami-096e1cb53f1603dbf"
+		ap-south-1 = "ami-08d73bec21b5a5e97"
+		ap-northeast-2 = "ami-0378baadb9f98ea64"
+		ap-southeast-1 = "ami-013333b6b35836468"
+		ap-southeast-2 = "ami-01df7d80a3d58ab0b"
+		ap-northeast-1 = "ami-0cd2c51ef85a7a4f0"
+		ca-central-1 = "ami-0084f2c85867ce2fb"
+		eu-central-1 = "ami-082c4108c57e55c6c"
+		eu-west-1 = "ami-0972663c633853272"
+		eu-west-2 = "ami-04f3a6a52eb2c7a3d"
+		eu-west-3 = "ami-03b099c09bbbece8d"
+		eu-north-1 = "ami-02e6f179caaee2803"
 		me-south-1 = "ami-00000000000000000"
-		sa-east-1 = "ami-0ea454cb75c182769"
+		sa-east-1 = "ami-09930ad86dcb86f36"
 	}
 	EC2xCONNECTxCIDR = {
 		us-east-1 = "18.206.107.24/29"
@@ -145,7 +144,7 @@ data "aws_availability_zones" "available" {
 }
 
 resource "aws_placement_group" "PlacementGroup" {
-	name = "${local.UserLoginTag}_${local.PROJECTxTAG}_PLACEMENT_GROUP_${local.REGIONxTAG["${local.Region}"]}"
+	name = "${local.UserLoginTag}_${local.PROJECTxTAG}_PLACEMENT_GROUP_${local.uuid}_${local.REGIONxTAG["${local.Region}"]}"
 	strategy = local.PLACEMENTxGROUPxSTRATEGY
 }
 
@@ -170,7 +169,7 @@ resource "aws_flow_log" "VpcFlowLog" {
 }
 
 resource "aws_iam_role" "VPCFlowLogAccessRole" {
-	name = "${local.UserLoginTag}_${local.PROJECTxTAG}_VPC_FLOW_LOG_ACCESS_ROLE_${local.REGIONxTAG["${local.Region}"]}"
+	name = "${local.UserLoginTag}_${local.PROJECTxTAG}_VPC_FLOW_LOG_ACCESS_ROLE_${local.uuid}_${local.REGIONxTAG["${local.Region}"]}"
 	assume_role_policy = <<EOF
 {
 	"Version": "2012-10-17",
@@ -190,7 +189,7 @@ EOF
 }
 
 resource "aws_cloudwatch_log_group" "VpcFlowLogGroup" {
-	name = "${local.UserLoginTag}_${local.PROJECTxTAG}_VPC_FLOW_LOG_GROUP_${local.REGIONxTAG["${local.Region}"]}"
+	name = "${local.UserLoginTag}_${local.PROJECTxTAG}_VPC_FLOW_LOG_GROUP_${local.uuid}_${local.REGIONxTAG["${local.Region}"]}"
 }
 
 resource "aws_subnet" "MgmtSubnet" {
