@@ -131,7 +131,7 @@ locals {
 	INSTANCExEBSxDELETExONxTERMINATION = true
 	INSTANCExEBSxVOLUMExTYPE = "gp2"
 	APPxTAG = "BPS"
-	APPxVERSION = "9.10"
+	APPxVERSION = "9.10U1"
 	SYSCTRLxCTRL0xPRIVATExIPxADDRESS = "10.0.1.10"
 	SYSCTRLxIMGxSIZE = "100"
 	VBLADE1xETH0xPRIVATExIPxADDRESS = "10.0.1.11"
@@ -495,7 +495,7 @@ resource "aws_network_interface" "BpsSystemControllerCtrl0" {
 }
 
 resource "aws_network_interface" "BpsVirtualBlade1Eth0" {
-	description = "${local.UserLoginTag}_{$local.PROJECTxTAG}_${local.APPxTAG}_VIRTUAL_BLADE1_${local.APPxVERSION}_ETH0_${local.REGIONxTAG["${local.Region}"]}"
+	description = "${local.UserLoginTag}_${local.PROJECTxTAG}_${local.APPxTAG}_VIRTUAL_BLADE1_${local.APPxVERSION}_ETH0_${local.REGIONxTAG["${local.Region}"]}"
 	source_dest_check = local.INTERFACExSOURCExDESTxCHECK
 	subnet_id = aws_subnet.CtrlSubnet.id
 	security_groups = [
@@ -535,7 +535,7 @@ resource "aws_network_interface" "BpsVirtualBlade1Eth2" {
 	]
 	private_ips = local.VBLADE1xETH2xPRIVATExIPxADDRESSES
 	tags = {
-		Name = "${local.UserLoginTag}_${local.PROJECTxTAG}_${local.APPxTAG}_VIRTUAL_BLADE1_${local.APPxVERSION}_ ETH2_${local.REGIONxTAG["${local.Region}"]}"
+		Name = "${local.UserLoginTag}_${local.PROJECTxTAG}_${local.APPxTAG}_VIRTUAL_BLADE1_${local.APPxVERSION}_ETH2_${local.REGIONxTAG["${local.Region}"]}"
 		Owner = local.UserEmailTag
 		Options = local.OPTIONSxTAG
 		Project = local.PROJECTxTAG
@@ -626,6 +626,7 @@ resource "aws_eip" "BpsVirtualBlade1Eth0ElasticIp" {
 	vpc = true
 	network_interface = aws_network_interface.BpsVirtualBlade1Eth0.id
 	depends_on = [
-		aws_internet_gateway.InternetGw
+		aws_internet_gateway.InternetGw,
+		aws_instance.BpsVirtualBlade1
 	]
 }
