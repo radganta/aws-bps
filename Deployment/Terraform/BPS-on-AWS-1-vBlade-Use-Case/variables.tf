@@ -43,7 +43,7 @@ variable "BPSvBladeInstanceType" {
 	description = "Instance type of BPS Virtual Blade VM"
 	validation {
 		condition =  can(regex("i3.8xlarge", var.BPSvBladeInstanceType)) || can(regex("c5n.xlarge", var.BPSvBladeInstanceType)) || can(regex("c5.xlarge", var.BPSvBladeInstanceType))
-		error_message = "BPSvBladeInstanceType must be one of (c5n.xlarge | c5.xlarge) types."
+		error_message = "BPSvBladeInstanceType must be one of (i3.8xlarge | c5n.xlarge | c5.xlarge) types."
 	}
 }
 
