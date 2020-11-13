@@ -143,9 +143,7 @@
 				"INSTANCExEBSxDELETExONxTERMINATION" : true,
 				"INSTANCExEBSxVOLUMExTYPE" : "gp2",
 				"APPxTAG" : "BPS",
-				"APPxVERSION" : "9.10U1"
-			},
-			"local" : {
+				"APPxVERSION" : "9.10U1",
 				"SYSCTRLxIMGxSIZE" : "100"
 			}
 		}
