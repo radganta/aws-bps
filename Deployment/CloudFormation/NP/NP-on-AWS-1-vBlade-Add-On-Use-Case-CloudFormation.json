@@ -113,7 +113,7 @@
 			}
 		},
 		"VariableMap" : {
-			"global" : {
+			"local" : {
 				"OPTIONSxTAG" : "MANUAL",
 				"PROJECTxTAG" : "OPEN_IXIA",
 				"PLACEMENTxGROUPxSTRATEGY" : "cluster",
@@ -133,17 +133,17 @@
 		"PlacementGroup": {
 			"Type" : "AWS::EC2::PlacementGroup",
 			"Properties" : {
-				"Strategy" : { "Fn::FindInMap" : [ "VariableMap", "global", "PLACEMENTxGROUPxSTRATEGY"] }
+				"Strategy" : { "Fn::FindInMap" : [ "VariableMap", "local", "PLACEMENTxGROUPxSTRATEGY"] }
 			}
 		},
 		"BpsVirtualBlade1Eth0": {
 			"Type": "AWS::EC2::NetworkInterface",
 			"Properties": {
-				"Description": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }, 
-					{ "Fn::FindInMap" : [ "VariableMap", "global", "APPxTAG"] }, "VIRTUAL_BLADE1", 
-					{ "Fn::FindInMap" : [ "VariableMap", "global", "APPxVERSION"] }, "ETH0", 
+				"Description": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "local", "PROJECTxTAG"] }, 
+					{ "Fn::FindInMap" : [ "VariableMap", "local", "APPxTAG"] }, "VIRTUAL_BLADE1", 
+					{ "Fn::FindInMap" : [ "VariableMap", "local", "APPxVERSION"] }, "ETH0", 
 					{ "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "REGIONxTAG"]} ] ] },
-				"SourceDestCheck": { "Fn::FindInMap" : [ "VariableMap", "global", "INTERFACExSOURCExDESTxCHECK"] },
+				"SourceDestCheck": { "Fn::FindInMap" : [ "VariableMap", "local", "INTERFACExSOURCExDESTxCHECK"] },
 				"SubnetId": {
 					"Ref": "CtrlSubnetId"
 				},
@@ -156,9 +156,9 @@
 				"Tags": [
 					{
 						"Key": "Name",
-						"Value": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }, 
-							{ "Fn::FindInMap" : [ "VariableMap", "global", "APPxTAG"] }, "VIRTUAL_BLADE1", 
-							{ "Fn::FindInMap" : [ "VariableMap", "global", "APPxVERSION"] }, "ETH0", 
+						"Value": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "local", "PROJECTxTAG"] }, 
+							{ "Fn::FindInMap" : [ "VariableMap", "local", "APPxTAG"] }, "VIRTUAL_BLADE1", 
+							{ "Fn::FindInMap" : [ "VariableMap", "local", "APPxVERSION"] }, "ETH0", 
 							{ "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "REGIONxTAG"]} ] ] }
 					},
 					{
@@ -167,11 +167,11 @@
 					},
 					{
 						"Key": "Options",
-						"Value": { "Fn::FindInMap" : [ "VariableMap", "global", "OPTIONSxTAG"] }
+						"Value": { "Fn::FindInMap" : [ "VariableMap", "local", "OPTIONSxTAG"] }
 					},
 					{
 						"Key": "Project",
-						"Value": { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }
+						"Value": { "Fn::FindInMap" : [ "VariableMap", "local", "PROJECTxTAG"] }
 					}
 				]
 			}
@@ -179,11 +179,11 @@
 		"BpsVirtualBlade1Eth1": {
 			"Type": "AWS::EC2::NetworkInterface",
 			"Properties": {
-				"Description": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }, 
-					{ "Fn::FindInMap" : [ "VariableMap", "global", "APPxTAG"] }, "VIRTUAL_BLADE1", 
-					{ "Fn::FindInMap" : [ "VariableMap", "global", "APPxVERSION"] }, "ETH1", 
+				"Description": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "local", "PROJECTxTAG"] }, 
+					{ "Fn::FindInMap" : [ "VariableMap", "local", "APPxTAG"] }, "VIRTUAL_BLADE1", 
+					{ "Fn::FindInMap" : [ "VariableMap", "local", "APPxVERSION"] }, "ETH1", 
 					{ "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "REGIONxTAG"]} ] ] },
-				"SourceDestCheck": { "Fn::FindInMap" : [ "VariableMap", "global", "INTERFACExSOURCExDESTxCHECK"] },
+				"SourceDestCheck": { "Fn::FindInMap" : [ "VariableMap", "local", "INTERFACExSOURCExDESTxCHECK"] },
 				"SubnetId": {
 					"Ref": "Test1SubnetId"
 				},
@@ -234,9 +234,9 @@
 				"Tags": [
 					{
 						"Key": "Name",
-						"Value": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }, 
-							{ "Fn::FindInMap" : [ "VariableMap", "global", "APPxTAG"] }, "VIRTUAL_BLADE1", 
-							{ "Fn::FindInMap" : [ "VariableMap", "global", "APPxVERSION"] }, "ETH1", 
+						"Value": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "local", "PROJECTxTAG"] }, 
+							{ "Fn::FindInMap" : [ "VariableMap", "local", "APPxTAG"] }, "VIRTUAL_BLADE1", 
+							{ "Fn::FindInMap" : [ "VariableMap", "local", "APPxVERSION"] }, "ETH1", 
 							{ "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "REGIONxTAG"]} ] ] }
 					},
 					{
@@ -245,11 +245,11 @@
 					},
 					{
 						"Key": "Options",
-						"Value": { "Fn::FindInMap" : [ "VariableMap", "global", "OPTIONSxTAG"] }
+						"Value": { "Fn::FindInMap" : [ "VariableMap", "local", "OPTIONSxTAG"] }
 					},
 					{
 						"Key": "Project",
-						"Value": { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }
+						"Value": { "Fn::FindInMap" : [ "VariableMap", "local", "PROJECTxTAG"] }
 					}
 				]
 			}
@@ -257,11 +257,11 @@
 		"BpsVirtualBlade1Eth2": {
 			"Type": "AWS::EC2::NetworkInterface",
 			"Properties": {
-				"Description": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }, 
-					{ "Fn::FindInMap" : [ "VariableMap", "global", "APPxTAG"] }, "VIRTUAL_BLADE1", 
-					{ "Fn::FindInMap" : [ "VariableMap", "global", "APPxVERSION"] }, "ETH2", 
+				"Description": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "local", "PROJECTxTAG"] }, 
+					{ "Fn::FindInMap" : [ "VariableMap", "local", "APPxTAG"] }, "VIRTUAL_BLADE1", 
+					{ "Fn::FindInMap" : [ "VariableMap", "local", "APPxVERSION"] }, "ETH2", 
 					{ "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "REGIONxTAG"]} ] ] },
-				"SourceDestCheck": { "Fn::FindInMap" : [ "VariableMap", "global", "INTERFACExSOURCExDESTxCHECK"] },
+				"SourceDestCheck": { "Fn::FindInMap" : [ "VariableMap", "local", "INTERFACExSOURCExDESTxCHECK"] },
 				"SubnetId": {
 					"Ref": "Test2SubnetId"
 				},
@@ -312,9 +312,9 @@
 				"Tags": [
 					{
 						"Key": "Name",
-						"Value": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }, 
-							{ "Fn::FindInMap" : [ "VariableMap", "global", "APPxTAG"] }, "VIRTUAL_BLADE1", 
-							{ "Fn::FindInMap" : [ "VariableMap", "global", "APPxVERSION"] }, "ETH2", 
+						"Value": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "local", "PROJECTxTAG"] }, 
+							{ "Fn::FindInMap" : [ "VariableMap", "local", "APPxTAG"] }, "VIRTUAL_BLADE1", 
+							{ "Fn::FindInMap" : [ "VariableMap", "local", "APPxVERSION"] }, "ETH2", 
 							{ "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "REGIONxTAG"]} ] ] }
 					},
 					{
@@ -323,11 +323,11 @@
 					},
 					{
 						"Key": "Options",
-						"Value": { "Fn::FindInMap" : [ "VariableMap", "global", "OPTIONSxTAG"] }
+						"Value": { "Fn::FindInMap" : [ "VariableMap", "local", "OPTIONSxTAG"] }
 					},
 					{
 						"Key": "Project",
-						"Value": { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }
+						"Value": { "Fn::FindInMap" : [ "VariableMap", "local", "PROJECTxTAG"] }
 					}
 				]
 			}
@@ -335,18 +335,18 @@
 		"BpsVirtualBlade1": {
 			"Type": "AWS::EC2::Instance",
 			"Properties": {
-				"DisableApiTermination": { "Fn::FindInMap" : [ "VariableMap", "global", "INSTANCExDISABLExAPIxTERMINATION"] },
-				"InstanceInitiatedShutdownBehavior": { "Fn::FindInMap" : [ "VariableMap", "global", "INSTANCExINSTANCExINITIATEDxSHUTDOWNxBEHAVIOR"] },
+				"DisableApiTermination": { "Fn::FindInMap" : [ "VariableMap", "local", "INSTANCExDISABLExAPIxTERMINATION"] },
+				"InstanceInitiatedShutdownBehavior": { "Fn::FindInMap" : [ "VariableMap", "local", "INSTANCExINSTANCExINITIATEDxSHUTDOWNxBEHAVIOR"] },
 				"ImageId": { "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "AMIxVBLADE"] },
 				"InstanceType": { "Ref" : "BPSvBladeInstanceType" },
-				"Monitoring": { "Fn::FindInMap" : [ "VariableMap", "global", "INSTANCExMONITORING"] },
+				"Monitoring": { "Fn::FindInMap" : [ "VariableMap", "local", "INSTANCExMONITORING"] },
 				"PlacementGroupName" : { "Ref" : "PlacementGroup" },
 				"Tags": [
 					{
 						"Key": "Name",
-						"Value": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }, 
-							{ "Fn::FindInMap" : [ "VariableMap", "global", "APPxTAG"] }, "VIRTUAL_BLADE1", 
-							{ "Fn::FindInMap" : [ "VariableMap", "global", "APPxVERSION"] }, 
+						"Value": { "Fn::Join" : [ "_", [ { "Ref" : "UserLoginTag" }, { "Fn::FindInMap" : [ "VariableMap", "local", "PROJECTxTAG"] }, 
+							{ "Fn::FindInMap" : [ "VariableMap", "local", "APPxTAG"] }, "VIRTUAL_BLADE1", 
+							{ "Fn::FindInMap" : [ "VariableMap", "local", "APPxVERSION"] }, 
 							{ "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "REGIONxTAG"]} ] ] }
 					},
 					{
@@ -355,11 +355,11 @@
 					},
 					{
 						"Key": "Options",
-						"Value": { "Fn::FindInMap" : [ "VariableMap", "global", "OPTIONSxTAG"] }
+						"Value": { "Fn::FindInMap" : [ "VariableMap", "local", "OPTIONSxTAG"] }
 					},
 					{
 						"Key": "Project",
-						"Value": { "Fn::FindInMap" : [ "VariableMap", "global", "PROJECTxTAG"] }
+						"Value": { "Fn::FindInMap" : [ "VariableMap", "local", "PROJECTxTAG"] }
 					}
 				],
 				"UserData": "",
@@ -385,10 +385,10 @@
 				],
 				"BlockDeviceMappings" : [
 					{
-						"DeviceName" : { "Fn::FindInMap" : [ "VariableMap", "global", "INSTANCExBLOCKxDEVICExNAME"] },
+						"DeviceName" : { "Fn::FindInMap" : [ "VariableMap", "local", "INSTANCExBLOCKxDEVICExNAME"] },
 						"Ebs" : { 
-							"DeleteOnTermination" : { "Fn::FindInMap" : [ "VariableMap", "global", "INSTANCExEBSxDELETExONxTERMINATION"] },
-							"VolumeType" : { "Fn::FindInMap" : [ "VariableMap", "global", "INSTANCExEBSxVOLUMExTYPE"] }
+							"DeleteOnTermination" : { "Fn::FindInMap" : [ "VariableMap", "local", "INSTANCExEBSxDELETExONxTERMINATION"] },
+							"VolumeType" : { "Fn::FindInMap" : [ "VariableMap", "local", "INSTANCExEBSxVOLUMExTYPE"] }
 						}
 					}
 				]   
