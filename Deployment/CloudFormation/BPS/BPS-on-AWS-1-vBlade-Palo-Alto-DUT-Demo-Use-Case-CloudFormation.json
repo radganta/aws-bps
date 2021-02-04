@@ -68,7 +68,7 @@
 				"REGIONxTAG" : "AP_SOUTHEAST_1"
 			},
 			"ap-southeast-2" : {
-				"AMIxSYSCTRL" : ami-03fbfb58510bcc4b0",
+				"AMIxSYSCTRL" : "ami-03fbfb58510bcc4b0",
 				"AMIxVBLADE" : "ami-0c76e7186b3551155",
 				"AMIxDUT" : "ami-00000000000000000",
 				"EC2xCONNECTxCIDR" : "13.239.158.0/29",
@@ -93,7 +93,7 @@
 			},
 			"eu-central-1" : {
 				"AMIxSYSCTRL" : "ami-05c0c681e93648daa",
-				"AMIxVBLADE" : ami-0b63ff3e157ee0b90",
+				"AMIxVBLADE" : "ami-0b63ff3e157ee0b90",
 				"AMIxDUT" : "ami-00000000000000000",
 				"EC2xCONNECTxCIDR" : "3.120.181.40/29",
 				"EC2xREGION" : "EU (Frankfurt)",
@@ -172,7 +172,7 @@
 				"INSTANCExEBSxDELETExONxTERMINATION" : true,
 				"INSTANCExEBSxVOLUMExTYPE" : "gp2",
 				"APPxTAG" : "BPS",
-				"APPxVERSION" : "9.10U1",
+				"APPxVERSION" : "9.10U2",
 				"SYSCTRLxCTRL0xPRIVATExIPxADDRESS" : "10.0.1.10",
 				"SYSCTRLxIMGxSIZE" : "100",
 				"VBLADE1xETH0xPRIVATExIPxADDRESS" : "10.0.1.11",
