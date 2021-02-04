@@ -1,5 +1,5 @@
 terraform {
-  experiments = [variable_validation]
+	required_version = ">= 0.14.3"
 }
 
 variable "Region" {
